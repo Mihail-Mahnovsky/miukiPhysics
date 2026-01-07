@@ -1,8 +1,9 @@
+use std::ops::{Add, AddAssign, Sub, Mul};
 
-#[derive(Clone)]
+#[derive(Clone,Copy)]
 pub struct Vec2{
-    x : f64,
-    y : f64,
+    pub x : f64,
+    pub y : f64,
 }
 
 impl Vec2{
@@ -19,24 +20,40 @@ impl Vec2{
             y,
         }
     }
+}
 
-    pub fn get_x(&self) -> f64{
-        self.x
-    }
+impl Add for Vec2 {
+    type Output = Vec2;
 
-    pub fn get_y(&self) -> f64{
-        self.y
-    }
-
-    pub fn set_x(&mut self, new_x : f64) {
-        self.x = new_x
-    }
-
-    pub fn set_y(&mut self, new_y : f64) {
-        self.y = new_y
+    fn add(self, rhs: Vec2) -> Vec2 {
+        Vec2::new(self.x + rhs.x, self.y + rhs.y)
     }
 }
 
+impl AddAssign for Vec2 {
+    fn add_assign(&mut self, rhs: Vec2) {
+        self.x += rhs.x;
+        self.y += rhs.y;
+    }
+}
+
+impl Sub for Vec2 {
+    type Output = Vec2;
+
+    fn sub(self, rhs: Vec2) -> Vec2 {
+        Vec2::new(self.x - rhs.x, self.y - rhs.y)
+    }
+}
+
+impl Mul<f64> for Vec2 {
+    type Output = Vec2;
+
+    fn mul(self, rhs: f64) -> Vec2 {
+        Vec2::new(self.x * rhs, self.y * rhs)
+    }
+}
+
+
 pub fn dot(v1 : &Vec2,v2 : &Vec2) -> f64{
-    v1.get_x() * v2.get_x() + v1.get_y() * v2.get_y()
+    v1.x * v2.x + v1.y * v2.y
 }

@@ -41,17 +41,17 @@ impl Sat{
             for i in 0..polygon.len() {
                 let next = (i + 1) % polygon.len();
                 let edge = Vec2::new(
-                    polygon[next].get_x() - polygon[i].get_x(),
-                    polygon[next].get_y() - polygon[i].get_y(),
+                    polygon[next].x - polygon[i].x,
+                    polygon[next].y - polygon[i].y,
                 );
             
-                let axis = Vec2::new(-edge.get_y(), edge.get_x());
+                let axis = Vec2::new(-edge.y, edge.x);
 
                 let (min_a, max_a) = self.project_polygon(&axis);
                 let (min_b, max_b) = other.project_polygon(&axis);
 
                 if max_a < min_b || max_b < min_a {
-                    return false; 
+                    false; 
                 }
             }
         }

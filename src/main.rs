@@ -13,7 +13,7 @@ use std::cell::RefCell;
 #[macroquad::main("Test")]
 async fn main() {
     let mut world = World::new();
-    let rect = Rc::new(RefCell::new(Rectangle::new(50.0, 50.0, 100.0, 100.0)));
+    let rect = Rc::new(RefCell::new(Rectangle::new(50.0, 50.0, 125.0, 100.0)));
     world.push(rect.clone());
 
     loop {
@@ -23,10 +23,10 @@ async fn main() {
 
         let r = rect.borrow();
         draw_rectangle(
-            r.get_pos().get_x() as f32,
-            r.get_pos().get_y() as f32,
-            r.get_size().get_x() as f32,
-            r.get_size().get_y() as f32,
+            r.shape.transform.pos.x as f32,
+            r.shape.transform.pos.y as f32,
+            r.shape.transform.size.x as f32,
+            r.shape.transform.size.y as f32,
         BLACK
         );
 
