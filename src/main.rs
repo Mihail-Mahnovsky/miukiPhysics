@@ -23,10 +23,10 @@ async fn main() {
 
         let r = rect.borrow();
         draw_rectangle(
-            r.shape.transform.pos.x as f32,
-            r.shape.transform.pos.y as f32,
-            r.shape.transform.size.x as f32,
-            r.shape.transform.size.y as f32,
+            r.transform.pos.x as f32,
+            r.transform.pos.y as f32,
+            r.transform.size.x as f32,
+            r.transform.size.y as f32,
         BLACK
         );
 

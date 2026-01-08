@@ -1,4 +1,4 @@
-use crate::{math::vec2::Vec2, physics::transform::{self, Transform}};
+use crate::{math::vec2::Vec2, physics::{physicsContext::PhysicsContext, transform::{self, Transform}}};
 
 #[derive(Clone)]
 pub struct RigetBody{
@@ -16,13 +16,13 @@ impl RigetBody{
         }
     }
 
-    pub fn update(&mut self, dt : f64,transform : &mut Transform){
+    pub fn update(&mut self, dt : f64,transform : &mut Transform,phys_context : &PhysicsContext){
         if self.is_static{
             return;
         }
 
         if !self.is_on_floor {
-            let g = 9.8 * 100.0;
+            let g = phys_context.gravity.y * 100.0;
             self.velocity.y +=  g * dt;
         }
 
