@@ -6,14 +6,14 @@ use std::cell::RefCell;
 
 pub struct World{
     objects : Vec<Rc<RefCell<dyn Body>>>,
-    context : PhysicsContext,
+    pub context : PhysicsContext,
 }
 
 impl World{
     pub fn new() -> Self{
         Self { 
             objects : Vec::new(),
-            context : PhysicsContext{ gravity : Vec2::new(0.0, 9.8) }
+            context : PhysicsContext{ gravity : Vec2::new(0.0, 980.0), dt : 0.0, }
         }
     }
 
@@ -34,6 +34,7 @@ impl World{
     }
 
     pub fn step(&mut self,dt : f32){
+        self.context.dt = dt as f64;
         for obj in &self.objects {
             obj.borrow_mut().update(dt,&self.context);
         }

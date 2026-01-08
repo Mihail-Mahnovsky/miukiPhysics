@@ -1,4 +1,4 @@
-use std::ops::{Add, AddAssign, Sub, Mul};
+use std::ops::{Add, AddAssign, Sub, Mul,Div};
 
 #[derive(Clone,Copy)]
 pub struct Vec2{
@@ -53,6 +53,16 @@ impl Mul<f64> for Vec2 {
     }
 }
 
+impl Div<f64> for Vec2 {
+    type Output = Vec2;
+
+    fn div(self, rhs: f64) -> Vec2 {
+        Vec2 {
+            x: self.x / rhs,
+            y: self.y / rhs,
+        }
+    }
+}
 
 pub fn dot(v1 : &Vec2,v2 : &Vec2) -> f64{
     v1.x * v2.x + v1.y * v2.y

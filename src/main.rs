@@ -16,10 +16,13 @@ async fn main() {
     let rect = Rc::new(RefCell::new(Rectangle::new(50.0, 50.0, 125.0, 100.0)));
     world.push(rect.clone());
 
+
+
     loop {
         let dt = get_frame_time();
         world.step(dt); 
         clear_background(WHITE);
+        rect.borrow_mut().body.add_force(Vec2::new(40.0, 0.0), &world.context);
 
         let r = rect.borrow();
         draw_rectangle(

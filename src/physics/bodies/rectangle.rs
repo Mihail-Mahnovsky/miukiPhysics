@@ -33,7 +33,7 @@ impl Body for Rectangle {
     fn update(&mut self, dt: f32,phys_context : &PhysicsContext) {
         let dt = dt as f64;
 
-        self.body.update(dt,&mut self.transform,phys_context);
+        self.body.update(&mut self.transform,phys_context);
         self.update_hitbox();
     }
 
