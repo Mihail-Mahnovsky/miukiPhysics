@@ -3,13 +3,13 @@ use std::f64::consts::E;
 use crate::physics::body::Body;
 use crate::math::vec2::Vec2;
 use crate::physics::physicsContext::PhysicsContext;
-use crate::physics::rigetbody::RigetBody;
+use crate::physics::rigetbody::RigitBody;
 use crate::physics::transform::Transform;
 use crate::Sat;
 
 pub struct Rectangle {
     pub transform: Transform ,
-    pub body: RigetBody ,
+    pub body: RigitBody ,
     pub hitbox : Sat,
 }
 
@@ -25,7 +25,7 @@ impl Rectangle{
             Vec2::new(x, y + height),
         ]);
 
-        Self { transform: Transform::new(x, y, width, height), body: RigetBody::new(),hitbox :  hitbox}
+        Self { transform: Transform::new(x, y, width, height), body: RigitBody::new(),hitbox :  hitbox}
     }
 }
 
@@ -49,5 +49,25 @@ impl Body for Rectangle {
             Vec2::new(x + width, y + height),
             Vec2::new(x, y + height),
         ]);
+    }
+
+    fn rigitbody(&mut self) -> &RigitBody {
+        &self.body
+    }
+
+    fn hitbox(&self) -> &Sat {
+        &self.hitbox
+    }
+
+    fn transform(&mut self) -> &Transform {
+        &self.transform
+    }
+
+    fn transform_mut(&mut self) -> &mut Transform {
+        &mut self.transform
+    }
+
+    fn rigitbody_mut(&mut self) -> &mut RigitBody {
+        &mut self.body
     }
 }

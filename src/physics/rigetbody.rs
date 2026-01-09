@@ -7,7 +7,7 @@ use crate::{
 };
 
 #[derive(Clone)]
-pub struct RigetBody {
+pub struct RigitBody {
     pub is_static: bool,
     pub is_on_floor: bool,
     pub velocity: Vec2,
@@ -16,12 +16,12 @@ pub struct RigetBody {
     pub mass : f64,
 }
 
-impl RigetBody {
+impl RigitBody {
     pub fn new() -> Self {
         Self {
             is_static: false,
             is_on_floor: false,
-            velocity: Vec2::default(),
+            velocity: Vec2::zero(),
             restitution : 0.3,
             friction : 0.8,
             mass : 1.0,
